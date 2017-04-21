@@ -30,12 +30,14 @@ button {
 }
 
 .page {
+	position: relative;
     height: 100%;
     width: 100%;
     overflow: scroll;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     &--red {
         background-color: $red;
     }
