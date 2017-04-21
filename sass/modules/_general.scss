@@ -1,0 +1,42 @@
+html,
+body {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+html {
+    font-size: 62.5%;
+    @include screen(small) {
+        font-size: 58%;
+    }
+}
+
+body {
+    font-size: 1.6rem;
+    font-family: $font;
+    -webkit-font-smoothing: antialiased;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+input,
+button {
+    font-size: inherit;
+    font-family: inherit;
+}
+
+.page {
+    height: 100%;
+    width: 100%;
+    overflow: scroll;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &--red {
+        background-color: $red;
+    }
+}
