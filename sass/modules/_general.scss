@@ -16,6 +16,7 @@ body {
     font-size: 1.6rem;
     font-family: $font;
     -webkit-font-smoothing: antialiased;
+    overflow-y: scroll;
 }
 
 a {
@@ -40,5 +41,8 @@ button {
     flex-direction: column;
     &--red {
         background-color: $red;
+    }
+    &--black {
+        background-color: #000;
     }
 }
