@@ -2,9 +2,39 @@
     width: 100%;
     margin-bottom: 120px;
     &__content {
-        width: 75%;
+        // width: 75%;
+        width: 1200px;
         display: block;
         margin: 0 auto;
+        &--about {
+            font-size: 1.5rem;
+            line-height: 1.7;
+            p {
+                margin-bottom: 30px;
+            }
+        }
+    }
+    &__copy {
+        width: 50%;
+        color: rgba(0,0,0,0.7);
+    }
+    &__gallery {
+        width: 1200px;
+        margin: 75px auto 0px;
+        padding: 0;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+        .image {
+            // flex-basis: 49.5%;
+            // height: 500px;
+            margin-right: 10px;
+            flex-grow: 1;
+            flex-basis: 24%;
+            height: 250px;
+            background-color: #ddd;
+            margin-bottom: 10px;
+        }
     }
     &__title {
         line-height: 1.2;
@@ -17,6 +47,10 @@
             margin-bottom: 15px;
             font-size: 4.2rem;
             font-weight: bold;
+        }
+        .item__content--about & {
+            margin-bottom: 45px;
+            color: black;
         }
     }
     &__field {
@@ -57,5 +91,8 @@
         bottom: 0;
         left: 0;
         margin-bottom: 0;
+    }
+    &--clear {
+        background-color: transparent;
     }
 }
