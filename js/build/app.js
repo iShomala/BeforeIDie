@@ -1,0 +1,1 @@
+"use strict";var config={baseUrl:"/",quotes:"data"},API={get:function(){}};
