@@ -94,12 +94,12 @@ var concat = require('gulp-concat');
 var uglify = require('gulp-uglifyjs');
 var babel = require('gulp-babel');
 
-var jsFiles = 'js/**/*.js';
+var jsFiles = 'js/src/**/*.js';
 
 gulp.task('js', function() {
     gulp.src('js/src/vendor/*.js')
         .pipe(uglify())
-        .pipe(concat('bundle.js'))
+        .pipe(concat('vendor.js'))
         .pipe(gulp.dest('js/build/'))
     gulp.src('js/src/app/*.js')
         .pipe(
@@ -119,7 +119,7 @@ gulp.task('js', function() {
 
 gulp.task('watch', function() {
     gulp.watch(sassFiles, ['css']);
-    gulp.watch('*.js', ['js']);
+    gulp.watch(jsFiles, ['js']);
     gulp.watch(htmlFiles, ['html']);
 });
 

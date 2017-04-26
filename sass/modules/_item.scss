@@ -39,13 +39,16 @@
     &__title {
         line-height: 1.2;
         &--lg {
-            font-size: 12rem;
+            font-size: 10rem;
             font-weight: 600;
             margin-bottom: 75px;
+            min-height: 290px;
+            max-height: auto;
+            transition: max-height 300ms;
         }
         &--md {
             margin-bottom: 15px;
-            font-size: 4.2rem;
+            font-size: 4rem;
             font-weight: bold;
         }
         .item__content--about & {

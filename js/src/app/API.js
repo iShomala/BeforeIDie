@@ -1,11 +1,10 @@
-var config = {
-	baseUrl: '/',
-	quotes: 'data'
+const config = {
+	endPoint: '/quotes.json'
 }
 
 var API = {
-	get: function() {
-		
+	getQuotes: function() {
+		return fetch(config.endPoint);
 	}
 }
 
