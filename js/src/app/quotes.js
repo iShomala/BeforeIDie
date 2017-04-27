@@ -68,7 +68,7 @@ function typeLetters(sentence) {
     var letter = sentence[0];
     quote.innerHTML = quote.innerHTML + letter;
 
-    return delay(75)
+    return delay(getRandomInt(20, 175))
         .then(() => sentence.slice(1))
         .then(typeLetters)
 }
@@ -89,4 +89,8 @@ function delay(t) {
     return new Promise(function(resolve) {
         setTimeout(resolve, t)
     });
+}
+
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
