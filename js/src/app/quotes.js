@@ -4,13 +4,11 @@ var Quotes = {
     init: function() {
         this.getNew()
             .then((quotes) => {
+                console.log('Start')
                 this.loaded = quotes;
                 this.currentPage += 1;
-                console.log('loaded Quotes')
             })
             .then(() => {
-                console.log('Start typing')
-                    // this.startTyping()
                 this.type();
             })
     },
@@ -32,32 +30,63 @@ var Quotes = {
         });
     },
     type: function() {
-        let strings = _.map(this.loaded, 'quote');
-        return Promise.resolve(strings)
-            .then(function typeItem(strings) {
-                    if (!strings) return;
-
-                    var timeouts = [];
-                    var text = strings.shift();
-                    var quote = document.getElementById('quote');
-
-                    var delay_time = 0;
-                    text.split('').forEach(function(letter, i) {
-                        delay_time += 75;
-                        timeouts.push(setTimeout(function() {
-                            quote.innerHTML = quote.innerHTML + letter;
-                            if ((i + 1) == text.length) {
-                            	setTimeout(function() {
-                            		quote.innerHTML = "";
-                            		return Promise.resolve(strings).then(typeItem);
-                            	}, 2000);
-                            }
-                        }, delay_time));
-                    });
-                })
-	}
+        let quotes = _.map(this.loaded, 'quote');
+        return Promise.resolve(quotes)
+            .then(typeQuotes)
+    }
 }
 
 $(function() {
     Quotes.init();
 })
+
+function repeatQuotes(sentences) {
+    typeQuotes(sentences);
+    return Promise.resolve(sentences)
+        .then(repeatQuotes)
+}
+
+function typeQuotes(sentences) {
+    if (!sentences) return;
+
+    var text = sentences.shift();
+    var quote = document.getElementById('quote');
+
+    return Promise.resolve(text)
+        .then(typeLetters)
+        .then(() => delay(2000))
+        .then(() => text)
+        .then(deleteLetters)
+        .then(() => delay(300))
+        .then(() => sentences)
+        .then(typeQuotes)
+}
+
+function typeLetters(sentence) {
+    if (!sentence) return;
+
+    var letter = sentence[0];
+    quote.innerHTML = quote.innerHTML + letter;
+
+    return delay(75)
+        .then(() => sentence.slice(1))
+        .then(typeLetters)
+}
+
+function deleteLetters(sentence) {
+    if (!sentence) return;
+    let temp = quote.innerHTML
+    quote.innerHTML = temp.slice(0, temp.length - 1);
+
+    return delay(50)
+        .then(() => {
+            return Promise.resolve(quote.innerHTML);
+        })
+        .then(deleteLetters)
+}
+
+function delay(t) {
+    return new Promise(function(resolve) {
+        setTimeout(resolve, t)
+    });
+}
