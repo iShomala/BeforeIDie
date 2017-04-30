@@ -30,9 +30,8 @@ var Quotes = {
         });
     },
     type: function() {
-        let quotes = _.map(this.loaded, 'quote');
-        return Promise.resolve(quotes)
-            .then(typeQuotes)
+        let quotes = _.map(Quotes.loaded, 'quote')
+        typeQuotes(quotes);
     }
 }
 
@@ -40,14 +39,9 @@ $(function() {
     Quotes.init();
 })
 
-function repeatQuotes(sentences) {
-    typeQuotes(sentences);
-    return Promise.resolve(sentences)
-        .then(repeatQuotes)
-}
+function typeQuotes(quotes) {
 
-function typeQuotes(sentences) {
-    if (!sentences) return;
+    let sentences = quotes.length != 0 ? quotes : _.map(Quotes.loaded, 'quote');
 
     var text = sentences.shift();
     var quote = document.getElementById('quote');
@@ -79,9 +73,7 @@ function deleteLetters(sentence) {
     quote.innerHTML = temp.slice(0, temp.length - 1);
 
     return delay(50)
-        .then(() => {
-            return Promise.resolve(quote.innerHTML);
-        })
+        .then(() => quote.innerHTML)
         .then(deleteLetters)
 }
 
