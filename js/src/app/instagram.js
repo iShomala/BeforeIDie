@@ -7,6 +7,9 @@ var feed = new Instafeed({
     target: 'gallery',
     limit: 6,
     sortBy: 'most-liked',
-    resolution: 'standard_resolution'
+    resolution: 'standard_resolution',
+    after: function() {
+      $("#gallery a").attr("target","_blank");
+    }
 });
 feed.run();

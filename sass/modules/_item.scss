@@ -65,28 +65,46 @@
     flex-flow: row wrap;
     justify-content: space-between;
     .image, a {
-        // flex-basis: 49.5%;
-        // height: 500px;
         margin-right: 10px;
         flex-grow: 1;
         flex-basis: 24%;
         height: 280px;
         background-color: #ddd;
         margin-bottom: 10px;
+        position: relative;
 
         img{
             object-fit: cover;
             object-position: center;
             height: 100%; width: 100%;
         }
+
+        &:before {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            content: '';
+            font-size: 1.4rem;
+            letter-spacing: 1px;
+            background-color: rgba(255,255,255,0.4);
+            opacity: 0;
+            transition: opacity 300ms ease-in;
+        }
+
+         &:hover:before{
+            opacity: 1;
+        }
     }
 }
 
 .item {
     width: 100%;
-    // margin-bottom: 120px;
     &__content {
-        // width: 75%;
         width: 960px;
         display: block;
         margin: 0 auto;
