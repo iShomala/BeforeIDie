@@ -30,9 +30,8 @@ var Quotes = {
         });
     },
     type: function() {
-        let quotes = _.map(Quotes.loaded, 'quote');
-        let authors = _.map(Quotes.loaded, 'author');
-        typeQuotes({quotes: quotes, authors: authors});
+        let quotes = _.shuffle(Quotes.loaded);
+        typeQuotes(quotes);
     }
 }
 
@@ -40,35 +39,32 @@ $(function() {
     Quotes.init();
 })
 
-function typeQuotes(payload) {
+function typeQuotes(_quotes) {
 
-    let sentences = payload.quotes.length != 0 ? payload.quotes : _.map(Quotes.loaded, 'quote'); // restart loop if quotes have finished
-    var authors = payload.authors.length != 0 ? payload.authors : _.map(Quotes.loaded, 'author');
-    
-    var text = sentences.shift();
-    var author = authors.shift();
+    let quotes = _quotes.length != 0 ? _quotes : _.shuffle(Quotes.loaded);
+    let quote = quotes.shift();
 
-    var quote = $('#quote');
-    var fakeQuote = $('#fake-quote');
-    fakeQuote.text(text);
-    quote.css('min-height', fakeQuote.height());
+    var fakeQuoteEl = $('#fake-quote');
+    fakeQuoteEl.text(quote.quote);
+    $('#quote').css('min-height', fakeQuoteEl.height());
 
-    $('#author').fadeOut(500, function() {
-        $(this).text(author).fadeIn(500);
+    $('#totalCount').text(Quotes.loaded.length);
+
+    $('#currentCount').fadeOut(300, function() {
+        $(this).text(Quotes.loaded.length - quotes.length).fadeIn(300);
     });
 
-    return Promise.resolve(text)
+    $('#author').fadeOut(500, function() {
+        $(this).text(quote.author).fadeIn(500);
+    });
+
+    return Promise.resolve(quote.quote)
         .then(typeLetters)
         .then(() => delay(2000))
-        .then(() => text)
+        .then(() => quote.quote)
         .then(deleteLetters)
         .then(() => delay(300))
-        .then(() => {
-            return {
-                quotes: sentences, 
-                authors: authors
-            }
-        })
+        .then(() =>  quotes)
         .then(typeQuotes)
 }
 
