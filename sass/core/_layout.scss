@@ -2,36 +2,36 @@
     clear: both;
 }
 
-.container {
-    margin: 0 auto;
-    max-width: 960px;
-    width: 100%;
-    position: relative;
+// .container {
+//     margin: 0 auto;
+//     max-width: 960px;
+//     width: 100%;
+//     position: relative;
     
-    &--full {
-        max-width: 100%;
-        padding: 0 20px; 
-        @include screen(custom, max, 1100) {
-            width: 960px;
-            padding: 0;
-        }
-    }
-    @include screen(custom, max, 990) {
-        padding: 0 20px;
-    }
+//     &--full {
+//         max-width: 100%;
+//         padding: 0 20px; 
+//         @include screen(custom, max, 1100) {
+//             width: 960px;
+//             padding: 0;
+//         }
+//     }
+//     @include screen(custom, max, 990) {
+//         padding: 0 20px;
+//     }
 
-    @include screen(small) {
-        padding: 0 8px;
-    }
-    &--flex{
-        display: flex;
-        justify-content: center;
-        flex-flow: row wrap;
-        @include screen(med) {
-            padding: 0;
-        }
-    }
-    &--no-pad{
-        padding: 0;
-    }
-}
+//     @include screen(small) {
+//         padding: 0 8px;
+//     }
+//     &--flex{
+//         display: flex;
+//         justify-content: center;
+//         flex-flow: row wrap;
+//         @include screen(med) {
+//             padding: 0;
+//         }
+//     }
+//     &--no-pad{
+//         padding: 0;
+//     }
+// }

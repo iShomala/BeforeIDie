@@ -5,6 +5,12 @@
     position: relative;
     width: 100%;
     transition: background-color 45s;
+
+    &__title {
+        margin-bottom: 15px;
+        font-size: 3.2rem;
+        font-weight: bold;
+    }
 }
 
 .hero__quote, #fake-quote {
@@ -24,6 +30,56 @@
     z-index: 999;
     color: black;
     width: 960px;
+}
+
+.container {
+    width: 960px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.about {
+    padding: 120px 0;
+
+    &__title {
+        font-weight: bold;
+        font-size: 3.2rem;
+        display: none;
+    }
+    em {
+        font-weight: bold;
+    }
+    &__text {
+        width: 90%;
+        font-size: 1.4rem;
+        line-height: 1.6;
+        text-align: center;
+        margin: 0 auto;
+    }
+}
+
+.gallery {
+    margin: 90px auto 0px;
+    padding: 0;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    .image, a {
+        // flex-basis: 49.5%;
+        // height: 500px;
+        margin-right: 10px;
+        flex-grow: 1;
+        flex-basis: 24%;
+        height: 280px;
+        background-color: #ddd;
+        margin-bottom: 10px;
+
+        img{
+            object-fit: cover;
+            object-position: center;
+            height: 100%; width: 100%;
+        }
+    }
 }
 
 .item {
@@ -47,46 +103,13 @@
         color: rgba(0,0,0,0.7);
     }
     &__gallery {
-        width: 1200px;
-        margin: 75px auto 0px;
-        padding: 0;
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: space-between;
-        .image, a {
-            // flex-basis: 49.5%;
-            // height: 500px;
-            margin-right: 10px;
-            flex-grow: 1;
-            flex-basis: 24%;
-            height: 280px;
-            background-color: #ddd;
-            margin-bottom: 10px;
-
-            img{
-                object-fit: cover;
-                object-position: center;
-                height: 100%; width: 100%;
-            }
-        }
+        
     }
     &__title {
         
-        &--lg {
-            font-size: 8rem;
-            font-weight: 600;
-            margin-bottom: 75px;
-            min-height: 92px;
-            transition: min-height 300ms;
-            line-height: 1.15;
-        }
-        &--md {
-            margin-bottom: 15px;
-            font-size: 3.2rem;
-            font-weight: bold;
-        }
+        
         .item__content--about & {
-            margin-bottom: 45px;
+            margin-bottom: 25px;
             color: black;
         }
     }
@@ -117,9 +140,6 @@
         letter-spacing: 0.1px;
         text-transform: uppercase;
     }
-    &--main {
-        // flex-grow: 1;
-    }
     &--snap-bottom {
         padding: 30px 0;
         position: absolute;
@@ -128,6 +148,7 @@
         bottom: 0;
         left: 0;
         margin-bottom: 0;
+        display: none;
     }
     &--clear {
         background-color: transparent;
