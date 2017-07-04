@@ -103,33 +103,9 @@
 }
 
 .item {
-    width: 100%;
-    &__content {
-        width: 960px;
-        display: block;
-        margin: 0 auto;
-        &--about {
-            font-size: 1.5rem;
-            line-height: 1.7;
-            p {
-                margin-bottom: 30px;
-            }
-        }
-    }
     &__copy {
         width: 50%;
         color: rgba(0,0,0,0.7);
-    }
-    &__gallery {
-        
-    }
-    &__title {
-        
-        
-        .item__content--about & {
-            margin-bottom: 25px;
-            color: black;
-        }
     }
     &__field {
         line-height: 1.2;

@@ -30,8 +30,9 @@ var Quotes = {
         });
     },
     type: function() {
-        let quotes = _.map(Quotes.loaded, 'quote')
-        typeQuotes(quotes);
+        let quotes = _.map(Quotes.loaded, 'quote');
+        let authors = _.map(Quotes.loaded, 'author');
+        typeQuotes({quotes: quotes, authors: authors});
     }
 }
 
@@ -39,17 +40,22 @@ $(function() {
     Quotes.init();
 })
 
-function typeQuotes(quotes) {
+function typeQuotes(payload) {
 
-    let sentences = quotes.length != 0 ? quotes : _.map(Quotes.loaded, 'quote');
-
+    let sentences = payload.quotes.length != 0 ? payload.quotes : _.map(Quotes.loaded, 'quote'); // restart loop if quotes have finished
+    var authors = payload.authors.length != 0 ? payload.authors : _.map(Quotes.loaded, 'author');
+    
     var text = sentences.shift();
-    var quote = $('#quote');
+    var author = authors.shift();
 
+    var quote = $('#quote');
     var fakeQuote = $('#fake-quote');
     fakeQuote.text(text);
     quote.css('min-height', fakeQuote.height());
-    console.log('Min height', fakeQuote.height());
+
+    $('#author').fadeOut(500, function() {
+        $(this).text(author).fadeIn(500);
+    });
 
     return Promise.resolve(text)
         .then(typeLetters)
@@ -57,7 +63,12 @@ function typeQuotes(quotes) {
         .then(() => text)
         .then(deleteLetters)
         .then(() => delay(300))
-        .then(() => sentences)
+        .then(() => {
+            return {
+                quotes: sentences, 
+                authors: authors
+            }
+        })
         .then(typeQuotes)
 }
 
