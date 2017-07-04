@@ -44,7 +44,12 @@ function typeQuotes(quotes) {
     let sentences = quotes.length != 0 ? quotes : _.map(Quotes.loaded, 'quote');
 
     var text = sentences.shift();
-    var quote = document.getElementById('quote');
+    var quote = $('#quote');
+
+    var fakeQuote = $('#fake-quote');
+    fakeQuote.text(text);
+    quote.css('min-height', fakeQuote.height());
+    console.log('Min height', fakeQuote.height());
 
     return Promise.resolve(text)
         .then(typeLetters)
